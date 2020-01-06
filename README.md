@@ -6,13 +6,11 @@ This package provides an Eloquent model called `BearNote` that can access your l
 
 ## Use
 ```php
-use BearSync;
-
 // Search all your Bear notes.
-$notes = BearNote::searchByTitle('Some Note Title');
+$notes = BearSync\BearNote::searchByTitle('Some Note Title');
 
 // Find a specific one:
-$note = BearNote::whereTitle('Some Note Title')->first();
+$note = BearSync\BearNote::whereTitle('Some Note Title')->first();
 
 // Access it's contents
 $note->id; // Bear's note id.
