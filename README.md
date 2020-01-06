@@ -1,8 +1,5 @@
 # Bear-Sync
-Access your Bear notes from Laravel.
-
-## Important Note:
-This package accesses the Bear notes on your local machine. This is not meant to be used on a remote server.
+This package provides an Eloquent model called `BearNote` that can access your local Bear notes without any configuration at all.
 
 ## Install
 `composer require calebporzio/bear-sync`
