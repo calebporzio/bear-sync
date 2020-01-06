@@ -21,6 +21,7 @@ $note = BearNote::whereTitle('Some Note Title')->first();
 $note->id; // Bear's note id.
 $note->title;
 $note->content;
+$note->checksum; // A checksum of the note's content, so you can detect updates.
 
 // Fetch it's content and replace/store images:
 $note->getContentAndStoreImages(function ($originalPath, $newFileName) {
