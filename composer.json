@@ -1,0 +1,21 @@
+{
+    "name": "calebporzio/bear-sync",
+    "description": "Access your Bear notes in Larabel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Caleb Porzio",
+            "email": "calebporzio@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/database": "~5.8.0|^6.0.0",
+        "illuminate/support": "~5.8.0|^6.0.0",
+        "illuminate/filesystem": "~5.8.0|^6.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BearSync\\": "src/"
+        }
+    }
+}
