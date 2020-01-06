@@ -16,7 +16,7 @@ class BearNote extends Model
         return static::where('title', 'like', '%'.$query.'%')->get();
     }
 
-    public function contentWithReplacedImages($callback)
+    public function getContentAndStoreImages($callback)
     {
         // Check the note's content for images:
         preg_match_all('/\[image:.*\]/', $this->content, $matches);
