@@ -5,6 +5,17 @@ This package provides an Eloquent model called `BearNote` that can access your l
 `composer require calebporzio/bear-sync`
 
 ## Use
+### Basic Usage
+```php
+$note = BearSync\BearNote::whereTitle('Some Note Title')->first();
+
+App\Post::create([
+    'title' => $note->title,
+    'content' => $note->content,
+])
+```
+
+### Full API
 ```php
 // Search all your Bear notes.
 $notes = BearSync\BearNote::searchByTitle('Some Note Title');
@@ -29,22 +40,4 @@ $note->getContentAndStoreImages(function ($originalPath, $newFileName) {
     // ![]($publicFileName)
     return $publicFileName;
 });
-```
-
-Reminder, `BearNote` is a plain Eloquent model. Feel free to extend it, and add relationships to your own models:
-
-```php
-<?php
-
-namespace App;
-
-use BearSync\BearNote as BaseBearNote;
-
-class BearNote extends BaseBearNote
-{
-    public function post()
-    {
-        return $this->hasOne(App\Post::class);
-    }
-}
 ```
