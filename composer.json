@@ -1,6 +1,6 @@
 {
     "name": "calebporzio/bear-sync",
-    "description": "Access your Bear notes in Larabel",
+    "description": "Access your Bear notes in Laravel",
     "license": "MIT",
     "authors": [
         {
