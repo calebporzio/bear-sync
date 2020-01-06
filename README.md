@@ -30,3 +30,21 @@ $note->getContentAndStoreImages(function ($originalPath, $newFileName) {
     return $publicFileName;
 });
 ```
+
+Reminder, `BearNote` is a plain Eloquent model. Feel free to extend it, and add relationships to your own models:
+
+```php
+<?php
+
+namespace App;
+
+use BearSync\BearNote as BaseBearNote;
+
+class BearNote extends BaseBearNote
+{
+    public function post()
+    {
+        return $this->hasOne(App\Post::class);
+    }
+}
+```
