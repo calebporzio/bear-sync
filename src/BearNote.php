@@ -16,6 +16,22 @@ class BearNote extends Model
         return static::where('title', 'like', '%'.$query.'%')->get();
     }
 
+    public static function fromTag($tag)
+    {
+        return static::fromTags([$tag]);
+    }
+
+    public static function fromTags(array $tags)
+    {
+        return static::whereExists(function ($query) use ($tags) {
+            $query->selectRaw(1)
+                ->from('Z_7TAGS')
+                ->join('ZSFNOTETAG', 'ZSFNOTETAG.Z_PK', '=', 'Z_7TAGS.Z_14TAGS')
+                ->whereRaw('Z_7TAGS.Z_7NOTES = id')
+                ->whereIn('ZSFNOTETAG.ZTITLE', $tags);
+        })->get();
+    }
+
     public function getContentAndStoreImages($callback)
     {
         // Check the note's content for images:
