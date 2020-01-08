@@ -23,6 +23,15 @@ $notes = BearSync\BearNote::searchByTitle('Some Note Title');
 // Find a specific note.
 $note = BearSync\BearNote::whereTitle('Some Note Title')->first();
 
+// Get tags by note
+$tags = $note->tags
+
+// Find a Bear tag named "blog"
+$tag = BearSync\BearTag::whereTitle('blog')->first();
+
+// Get Bear notes by tag
+$notes = $tag->notes;
+
 // Access the note's contents.
 $note->id; // Bear's note id.
 $note->title;
