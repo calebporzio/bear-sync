@@ -7,13 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class BearNote extends Model
 {
-    use UsesBearsDatabaseConnection;
+    use UsesBearsDatabaseConnection, ResolvesNoteTagPivot;
 
     protected $appends = ['content'];
 
     public function tags()
     {
-        return $this->belongsToMany(BearTag::class, 'Z_6TAGS', 'Z_6NOTES', 'Z_13TAGS');
+        return $this->belongsToMany(
+            BearTag::class,
+            $this->getNoteTagPivotTable(),
+            $this->getNoteColumn(),
+            $this->getTagColumn()
+        );
     }
 
     public static function searchByTitle($query)
@@ -59,7 +64,7 @@ class BearNote extends Model
         parent::boot();
 
         static::addGlobalScope(function ($builder) {
-            $builder->fromRaw("(select Z_PK as id, ZTITLE as title, ZTEXT as raw_content from ZSFNOTE) as bear_notes");
+            $builder->fromRaw("(select Z_PK as id, ZTITLE as title, ZTEXT as raw_content, Z_ENT as pivot_column_id from ZSFNOTE) as bear_notes");
         });
     }
 }
