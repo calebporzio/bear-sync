@@ -33,17 +33,17 @@ class BearNote extends Model
 
         $replaceStack = [];
 
-        foreach ($matches as $match) {
+        foreach ($matches[0] as $match) {
             if (empty($match)) continue;
 
-            $originalPath = Str::after(Str::beforeLast($match[0], ']'), '[image:');
+            $originalPath = Str::after(Str::beforeLast($match, ']'), '[image:');
             $originalFullPath = static::getBearPath().'/Local Files/Note Images/'.$originalPath;
 
             $newFileName = crc32($originalPath).'.'.Str::afterLast($originalPath, '.');
 
             $newFile = $callback($originalFullPath, $newFileName);
 
-            $replaceStack[$match[0]] = '![]('.$newFile.')';
+            $replaceStack[$match] = '![]('.$newFile.')';
         }
 
         return str_replace(array_keys($replaceStack), array_values($replaceStack), $this->content);
